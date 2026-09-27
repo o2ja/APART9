@@ -1,37 +1,36 @@
 /**
- * Luxury Apartment Property Gallery
- * Mobile-First, Touch-Optimized Interactive Viewer
+ * Apartment 9 - Property Gallery
+ * Clean Navy & White Design with Enhanced Video Seeking & 5s Skip Controls
  */
 
 (function () {
   'use strict';
 
-  // Define Media Items: 22 Original Photos + 1 Original Video Tour
-  // Video is featured prominently as Slide 2 for immediate walkthrough access
+  // 22 Original Photos + 1 Original Walkthrough Video (as Slide 2)
   const mediaItems = [
-    { type: 'image', src: './assets/apartment-image-1.jpg', title: 'Main Living Room / Entrance', id: 1 },
-    { type: 'video', src: './assets/apartment-video.mp4', title: 'Full Property Video Tour', id: 'video' },
-    { type: 'image', src: './assets/apartment-image-2.jpg', title: 'Living Space & Dining', id: 2 },
-    { type: 'image', src: './assets/apartment-image-3.jpg', title: 'Interior Architecture', id: 3 },
+    { type: 'image', src: './assets/apartment-image-1.jpg', title: 'Apartment 9', id: 1 },
+    { type: 'video', src: './assets/apartment-video.mp4', title: 'Video Tour', id: 'video' },
+    { type: 'image', src: './assets/apartment-image-2.jpg', title: 'Living Space', id: 2 },
+    { type: 'image', src: './assets/apartment-image-3.jpg', title: 'Interior', id: 3 },
     { type: 'image', src: './assets/apartment-image-4.jpg', title: 'Interior View', id: 4 },
-    { type: 'image', src: './assets/apartment-image-5.jpg', title: 'Primary Suite / Bedroom', id: 5 },
-    { type: 'image', src: './assets/apartment-image-6.jpg', title: 'Bedroom Perspective', id: 6 },
-    { type: 'image', src: './assets/apartment-image-7.jpg', title: 'Room Finishes', id: 7 },
+    { type: 'image', src: './assets/apartment-image-5.jpg', title: 'Primary Bedroom', id: 5 },
+    { type: 'image', src: './assets/apartment-image-6.jpg', title: 'Bedroom', id: 6 },
+    { type: 'image', src: './assets/apartment-image-7.jpg', title: 'Bedroom Detail', id: 7 },
     { type: 'image', src: './assets/apartment-image-8.jpg', title: 'Guest Bedroom', id: 8 },
-    { type: 'image', src: './assets/apartment-image-9.jpg', title: 'Bedroom Lighting', id: 9 },
-    { type: 'image', src: './assets/apartment-image-10.jpg', title: 'Kitchen & Cabinetry', id: 10 },
-    { type: 'image', src: './assets/apartment-image-11.jpg', title: 'Modern Kitchen Countertops', id: 11 },
-    { type: 'image', src: './assets/apartment-image-12.jpg', title: 'Kitchen Details', id: 12 },
-    { type: 'image', src: './assets/apartment-image-13.jpg', title: 'Bathroom / Vanity', id: 13 },
-    { type: 'image', src: './assets/apartment-image-14.jpg', title: 'Bathroom Fixtures', id: 14 },
-    { type: 'image', src: './assets/apartment-image-15.jpg', title: 'Tile & Finishes', id: 15 },
-    { type: 'image', src: './assets/apartment-image-16.jpg', title: 'Hallway & Circulation', id: 16 },
-    { type: 'image', src: './assets/apartment-image-17.jpg', title: 'Storage & Built-ins', id: 17 },
-    { type: 'image', src: './assets/apartment-image-18.jpg', title: 'Window View & Daylight', id: 18 },
-    { type: 'image', src: './assets/apartment-image-19.jpg', title: 'Balcony / Outdoor Area', id: 19 },
-    { type: 'image', src: './assets/apartment-image-20.jpg', title: 'Balcony Perspective', id: 20 },
-    { type: 'image', src: './assets/apartment-image-21.jpg', title: 'Exterior / Building View', id: 21 },
-    { type: 'image', src: './assets/apartment-image-22.jpg', title: 'Property Detail', id: 22 }
+    { type: 'image', src: './assets/apartment-image-9.jpg', title: 'Room View', id: 9 },
+    { type: 'image', src: './assets/apartment-image-10.jpg', title: 'Kitchen', id: 10 },
+    { type: 'image', src: './assets/apartment-image-11.jpg', title: 'Kitchen Counter', id: 11 },
+    { type: 'image', src: './assets/apartment-image-12.jpg', title: 'Kitchen View', id: 12 },
+    { type: 'image', src: './assets/apartment-image-13.jpg', title: 'Bathroom', id: 13 },
+    { type: 'image', src: './assets/apartment-image-14.jpg', title: 'Bathroom Details', id: 14 },
+    { type: 'image', src: './assets/apartment-image-15.jpg', title: 'Finishes', id: 15 },
+    { type: 'image', src: './assets/apartment-image-16.jpg', title: 'Hallway', id: 16 },
+    { type: 'image', src: './assets/apartment-image-17.jpg', title: 'Built-ins', id: 17 },
+    { type: 'image', src: './assets/apartment-image-18.jpg', title: 'Daylight View', id: 18 },
+    { type: 'image', src: './assets/apartment-image-19.jpg', title: 'Balcony', id: 19 },
+    { type: 'image', src: './assets/apartment-image-20.jpg', title: 'Balcony View', id: 20 },
+    { type: 'image', src: './assets/apartment-image-21.jpg', title: 'Exterior', id: 21 },
+    { type: 'image', src: './assets/apartment-image-22.jpg', title: 'Detail', id: 22 }
   ];
 
   // DOM Elements
@@ -50,7 +49,7 @@
   const btnGridView = document.getElementById('btn-grid-view');
   const btnShare = document.getElementById('btn-share');
   
-  // Tabs & Filter Buttons
+  // Tabs
   const tabAll = document.getElementById('tab-all');
   const tabPhotos = document.getElementById('tab-photos');
   const tabVideo = document.getElementById('tab-video');
@@ -67,7 +66,7 @@
   
   const toast = document.getElementById('toast');
 
-  // State Variables
+  // State
   let currentIndex = 0;
   const totalItems = mediaItems.length;
   let isDragging = false;
@@ -76,8 +75,9 @@
   let dragDiffX = 0;
   let isInteracted = false;
   let videoElement = null;
+  let isScrubbing = false;
 
-  // Initialize Gallery
+  // Initialize
   function initGallery() {
     totalSlidesEl.textContent = totalItems;
     renderSlides();
@@ -87,13 +87,20 @@
     setupTouchGestures();
     setupEventListeners();
     
-    // Auto-dismiss swipe hint after 4 seconds
     setTimeout(() => {
       dismissSwipeHint();
     }, 4000);
   }
 
-  // Render Slides into Track
+  // Helper: Format Time in M:SS
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  // Render Slides
   function renderSlides() {
     slidesTrack.innerHTML = '';
     
@@ -102,8 +109,7 @@
       slide.className = 'slide';
       slide.setAttribute('data-index', index);
       slide.setAttribute('role', 'group');
-      slide.setAttribute('aria-roledescription', 'slide');
-      slide.setAttribute('aria-label', `${item.title} (${index + 1} of ${totalItems})`);
+      slide.setAttribute('aria-label', `Apartment 9 - ${item.title} (${index + 1} of ${totalItems})`);
 
       const slideInner = document.createElement('div');
       slideInner.className = 'slide-inner';
@@ -112,36 +118,81 @@
         const videoContainer = document.createElement('div');
         videoContainer.className = 'slide-video-container';
 
-        // Video Badge
+        // Badge
         const videoBadge = document.createElement('div');
-        videoBadge.className = 'video-tour-badge';
-        videoBadge.innerHTML = `
-          <div class="video-pulse-dot"></div>
-          <span class="video-badge-text">VIDEO TOUR</span>
-        `;
+        videoBadge.className = 'video-pill-badge';
+        videoBadge.textContent = 'VIDEO TOUR';
         videoContainer.appendChild(videoBadge);
 
-        // Native HTML5 Video Element
+        // Video
         const video = document.createElement('video');
         video.className = 'slide-video';
         video.src = item.src;
-        video.controls = true;
         video.playsInline = true;
         video.preload = 'metadata';
-        video.setAttribute('aria-label', 'Apartment Walkthrough Video Tour');
-        
-        // Ensure not autoplaying with sound
+        video.setAttribute('aria-label', 'Apartment 9 Video Tour');
         video.autoplay = false;
         video.muted = false;
-
         videoElement = video;
         videoContainer.appendChild(video);
+
+        // Custom Video Controls with 5-Second Skip & Scrubber
+        const customControls = document.createElement('div');
+        customControls.className = 'video-custom-controls';
+        customControls.innerHTML = `
+          <div class="video-progress-wrap">
+            <input type="range" class="video-scrubber" id="video-scrubber" min="0" max="100" step="0.1" value="0" aria-label="Seek Video">
+            <span class="video-time" id="video-time-display">0:00 / 0:00</span>
+          </div>
+          <div class="video-actions-row">
+            <div class="video-left-actions">
+              <button class="v-btn v-btn-play" id="btn-v-play" aria-label="Play or Pause">
+                <svg id="v-icon-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span id="v-play-label">Play</span>
+              </button>
+              <button class="v-btn v-btn-skip" id="btn-v-skip-back" title="Rewind 5 Seconds" aria-label="Rewind 5 Seconds">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                <span>-5s</span>
+              </button>
+              <button class="v-btn v-btn-skip" id="btn-v-skip-fwd" title="Skip 5 Seconds" aria-label="Skip 5 Seconds">
+                <span>+5s</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="video-right-actions">
+              <button class="v-btn" id="btn-v-mute" aria-label="Mute or Unmute">
+                <svg id="v-icon-sound" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+              </button>
+              <button class="v-btn" id="btn-v-fullscreen" aria-label="Fullscreen">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+        videoContainer.appendChild(customControls);
         slideInner.appendChild(videoContainer);
+
+        // Setup Video Controls Event Handlers
+        setupVideoControls(video, customControls);
+
       } else {
         const img = document.createElement('img');
         img.className = 'slide-img';
         img.src = item.src;
-        img.alt = `Apartment Photo ${item.id} - ${item.title}`;
+        img.alt = `Apartment 9 - Photo ${item.id}`;
         img.loading = index < 3 ? 'eager' : 'lazy';
         slideInner.appendChild(img);
       }
@@ -151,7 +202,122 @@
     });
   }
 
-  // Render Thumbnail Bar
+  // Setup Enhanced Video Player Handlers
+  function setupVideoControls(video, controlsWrap) {
+    const playBtn = controlsWrap.querySelector('#btn-v-play');
+    const playIcon = controlsWrap.querySelector('#v-icon-play');
+    const playLabel = controlsWrap.querySelector('#v-play-label');
+    const skipBackBtn = controlsWrap.querySelector('#btn-v-skip-back');
+    const skipFwdBtn = controlsWrap.querySelector('#btn-v-skip-fwd');
+    const scrubber = controlsWrap.querySelector('#video-scrubber');
+    const timeDisplay = controlsWrap.querySelector('#video-time-display');
+    const muteBtn = controlsWrap.querySelector('#btn-v-mute');
+    const fsBtn = controlsWrap.querySelector('#btn-v-fullscreen');
+
+    // Prevent any click or touch within video controls from triggering slide gestures
+    controlsWrap.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    controlsWrap.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+    controlsWrap.addEventListener('mousedown', (e) => e.stopPropagation());
+
+    // Toggle Play/Pause
+    function togglePlay() {
+      if (video.paused || video.ended) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlay();
+    });
+
+    video.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlay();
+    });
+
+    video.addEventListener('play', () => {
+      playLabel.textContent = 'Pause';
+      playIcon.innerHTML = `
+        <rect x="6" y="4" width="4" height="16"></rect>
+        <rect x="14" y="4" width="4" height="16"></rect>
+      `;
+    });
+
+    video.addEventListener('pause', () => {
+      playLabel.textContent = 'Play';
+      playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"></polygon>`;
+    });
+
+    // Skip 5 Seconds Back
+    skipBackBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      video.currentTime = Math.max(0, video.currentTime - 5);
+      showToast('Rewind 5s');
+    });
+
+    // Skip 5 Seconds Forward
+    skipFwdBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetTime = Math.min(video.duration || 9999, video.currentTime + 5);
+      video.currentTime = targetTime;
+      showToast('Forward 5s');
+    });
+
+    // Scrubber / Seek Tracking
+    scrubber.addEventListener('input', () => {
+      isScrubbing = true;
+      if (video.duration) {
+        const seekTime = (scrubber.value / 100) * video.duration;
+        timeDisplay.textContent = `${formatTime(seekTime)} / ${formatTime(video.duration)}`;
+      }
+    });
+
+    scrubber.addEventListener('change', () => {
+      if (video.duration) {
+        video.currentTime = (scrubber.value / 100) * video.duration;
+      }
+      isScrubbing = false;
+    });
+
+    // Update Scrubber on Playback
+    video.addEventListener('timeupdate', () => {
+      if (!isScrubbing && video.duration) {
+        const percent = (video.currentTime / video.duration) * 100;
+        scrubber.value = percent;
+        timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+      }
+    });
+
+    video.addEventListener('loadedmetadata', () => {
+      timeDisplay.textContent = `0:00 / ${formatTime(video.duration)}`;
+    });
+
+    // Mute Toggle
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      muteBtn.style.opacity = video.muted ? '0.5' : '1';
+    });
+
+    // Fullscreen Toggle
+    fsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!document.fullscreenElement) {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen(); // iOS
+        }
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    });
+  }
+
+  // Render Thumbnails
   function renderThumbnails() {
     thumbnailsStrip.innerHTML = '';
     
@@ -159,19 +325,19 @@
       const thumb = document.createElement('button');
       thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
       thumb.setAttribute('data-index', index);
-      thumb.setAttribute('aria-label', `Go to slide ${index + 1}: ${item.title}`);
+      thumb.setAttribute('aria-label', `Slide ${index + 1}`);
 
       if (item.type === 'video') {
         thumb.innerHTML = `
           <img class="thumb-img" src="./assets/apartment-image-1.jpg" alt="Video thumbnail">
           <div class="thumb-video-badge">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
         `;
       } else {
-        thumb.innerHTML = `<img class="thumb-img" src="${item.src}" alt="Thumb ${index + 1}" loading="lazy">`;
+        thumb.innerHTML = `<img class="thumb-img" src="${item.src}" alt="Photo ${index + 1}" loading="lazy">`;
       }
 
       thumb.addEventListener('click', () => {
@@ -193,22 +359,21 @@
       gridItem.setAttribute('data-index', index);
       gridItem.setAttribute('role', 'button');
       gridItem.setAttribute('tabindex', '0');
-      gridItem.setAttribute('aria-label', `View ${item.title}`);
 
       if (item.type === 'video') {
         gridItem.innerHTML = `
           <img src="./assets/apartment-image-1.jpg" alt="Video preview" loading="lazy">
           <div class="grid-video-indicator">
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
-            <span>VIDEO TOUR</span>
+            <span>VIDEO</span>
           </div>
           <span class="grid-item-badge">#2 Video</span>
         `;
       } else {
         gridItem.innerHTML = `
-          <img src="${item.src}" alt="Apartment Photo ${item.id}" loading="lazy">
+          <img src="${item.src}" alt="Photo ${item.id}" loading="lazy">
           <span class="grid-item-badge">#${index + 1}</span>
         `;
       }
@@ -230,7 +395,6 @@
     });
   }
 
-  // Dismiss Swipe Hint
   function dismissSwipeHint() {
     if (!isInteracted && swipeHint) {
       isInteracted = true;
@@ -249,14 +413,13 @@
     const previousIndex = currentIndex;
     currentIndex = index;
 
-    // Pause video if navigating away from video slide
+    // Pause video when leaving video slide
     if (mediaItems[previousIndex] && mediaItems[previousIndex].type === 'video' && videoElement) {
       videoElement.pause();
     }
 
-    // Apply Track Transform
     if (animate) {
-      slidesTrack.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+      slidesTrack.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
     } else {
       slidesTrack.style.transition = 'none';
     }
@@ -264,10 +427,10 @@
     currentTranslateX = -currentIndex * 100;
     slidesTrack.style.transform = `translateX(${currentTranslateX}%)`;
 
-    // Update Counter
+    // Counter
     currentSlideEl.textContent = currentIndex + 1;
 
-    // Update Ambient Glow Backdrop
+    // Ambient Backdrop
     const currentItem = mediaItems[currentIndex];
     if (currentItem.type === 'video') {
       ambientBackdrop.style.backgroundImage = `url('./assets/apartment-image-1.jpg')`;
@@ -275,7 +438,7 @@
       ambientBackdrop.style.backgroundImage = `url('${currentItem.src}')`;
     }
 
-    // Update Active Thumbnail & Scroll into view
+    // Thumbnails
     const thumbs = thumbnailsStrip.querySelectorAll('.thumb-item');
     thumbs.forEach((th, idx) => {
       if (idx === currentIndex) {
@@ -286,7 +449,7 @@
       }
     });
 
-    // Update Quick Filter Tab Active States
+    // Quick Tabs
     if (currentItem.type === 'video') {
       tabVideo.classList.add('active');
       tabPhotos.classList.remove('active');
@@ -310,7 +473,7 @@
     goToSlide(currentIndex - 1);
   }
 
-  // Setup Mobile Touch Swipe Gestures
+  // Setup Mobile Touch Swiping - Isolated from video scrubbing
   function setupTouchGestures() {
     const viewport = document.getElementById('gallery-viewport');
     let startY = 0;
@@ -318,8 +481,9 @@
     let hasDeterminedDirection = false;
 
     viewport.addEventListener('touchstart', (e) => {
-      // Don't interfere if user is tapping native video controls
-      if (e.target.tagName.toLowerCase() === 'video' && e.target.controls) {
+      // If touch originates inside the video container or controls, DO NOT intercept swipe!
+      if (e.target.closest('.slide-video-container') || e.target.closest('.video-custom-controls')) {
+        isDragging = false;
         return;
       }
 
@@ -341,7 +505,6 @@
       const diffX = currentX - startX;
       const diffY = currentY - startY;
 
-      // Determine swipe axis on initial movement
       if (!hasDeterminedDirection) {
         if (Math.abs(diffX) > 8 || Math.abs(diffY) > 8) {
           hasDeterminedDirection = true;
@@ -351,7 +514,6 @@
 
       if (isHorizontalSwipe) {
         dragDiffX = diffX;
-        // Calculate offset percentage relative to track width
         const trackWidth = viewport.clientWidth;
         const dragPercent = (dragDiffX / trackWidth) * 100;
         slidesTrack.style.transform = `translateX(${currentTranslateX + dragPercent}%)`;
@@ -363,13 +525,12 @@
       isDragging = false;
 
       if (isHorizontalSwipe) {
-        const threshold = 45; // Minimum drag distance in pixels
+        const threshold = 40;
         if (dragDiffX < -threshold) {
           nextSlide();
         } else if (dragDiffX > threshold) {
           prevSlide();
         } else {
-          // Snap back to current slide
           goToSlide(currentIndex);
         }
       }
@@ -383,13 +544,13 @@
       }
     });
 
-    // Also support desktop mouse drag
+    // Desktop Mouse Drag
     let isMouseDown = false;
     let mouseStartX = 0;
     let mouseDiffX = 0;
 
     viewport.addEventListener('mousedown', (e) => {
-      if (e.target.closest('button') || e.target.tagName.toLowerCase() === 'video') return;
+      if (e.target.closest('button') || e.target.closest('.slide-video-container')) return;
       isMouseDown = true;
       mouseStartX = e.clientX;
       mouseDiffX = 0;
@@ -407,7 +568,7 @@
     window.addEventListener('mouseup', () => {
       if (!isMouseDown) return;
       isMouseDown = false;
-      const threshold = 50;
+      const threshold = 45;
       if (mouseDiffX < -threshold) {
         nextSlide();
       } else if (mouseDiffX > threshold) {
@@ -419,9 +580,8 @@
     });
   }
 
-  // Setup UI Event Listeners
+  // Setup Event Listeners
   function setupEventListeners() {
-    // Prev / Next Buttons
     btnPrev.addEventListener('click', (e) => {
       e.stopPropagation();
       dismissSwipeHint();
@@ -434,39 +594,27 @@
       nextSlide();
     });
 
-    // Fit/Fill Toggle
     btnFitToggle.addEventListener('click', () => {
       const isFill = appEl.classList.toggle('fill-mode');
       btnFitToggle.classList.toggle('active', isFill);
-      showToast(isFill ? 'Fill mode: Edge-to-edge' : 'Fit mode: Full view');
+      showToast(isFill ? 'Fill mode' : 'Fit mode');
     });
 
-    // Grid View Modal Controls
-    btnGridView.addEventListener('click', () => {
-      openModal(gridModal);
-    });
-
-    btnCloseGrid.addEventListener('click', () => {
-      closeModal(gridModal);
-    });
-
+    btnGridView.addEventListener('click', () => openModal(gridModal));
+    btnCloseGrid.addEventListener('click', () => closeModal(gridModal));
     gridModal.addEventListener('click', (e) => {
-      if (e.target === gridModal) {
-        closeModal(gridModal);
-      }
+      if (e.target === gridModal) closeModal(gridModal);
     });
 
-    // Share Button
     btnShare.addEventListener('click', async () => {
       if (navigator.share) {
         try {
           await navigator.share({
-            title: 'Apartment Tour | Exclusive Property Gallery',
-            text: 'Take a virtual tour of this luxury residence with high-res photos and video walkthrough.',
+            title: 'Apartment 9',
+            text: 'Apartment 9 - High-resolution gallery and video walkthrough.',
             url: window.location.href
           });
         } catch (err) {
-          // User cancelled or share failed, fallback to copy
           copyPageUrl();
         }
       } else {
@@ -474,27 +622,14 @@
       }
     });
 
-    // Inquire Button & Modal
-    btnInquire.addEventListener('click', () => {
-      openModal(contactModal);
-    });
-
-    btnCloseContact.addEventListener('click', () => {
-      closeModal(contactModal);
-    });
-
+    btnInquire.addEventListener('click', () => openModal(contactModal));
+    btnCloseContact.addEventListener('click', () => closeModal(contactModal));
     contactModal.addEventListener('click', (e) => {
-      if (e.target === contactModal) {
-        closeModal(contactModal);
-      }
+      if (e.target === contactModal) closeModal(contactModal);
     });
 
-    // Copy Link Button in Modal
-    btnCopyLink.addEventListener('click', () => {
-      copyPageUrl();
-    });
+    btnCopyLink.addEventListener('click', () => copyPageUrl());
 
-    // Quick Tabs Navigation
     tabAll.addEventListener('click', () => {
       tabAll.classList.add('active');
       tabPhotos.classList.remove('active');
@@ -503,39 +638,45 @@
     });
 
     tabPhotos.addEventListener('click', () => {
-      // Jump to first photo
-      const photoIndex = mediaItems.findIndex(item => item.type === 'image');
-      if (photoIndex !== -1) goToSlide(photoIndex);
+      goToSlide(0);
     });
 
     tabVideo.addEventListener('click', () => {
-      // Jump to video tour
-      const videoIndex = mediaItems.findIndex(item => item.type === 'video');
-      if (videoIndex !== -1) goToSlide(videoIndex);
+      const videoIdx = mediaItems.findIndex(i => i.type === 'video');
+      if (videoIdx !== -1) goToSlide(videoIdx);
     });
 
-    // Desktop Keyboard Navigation
+    // Desktop Keyboard shortcuts
     window.addEventListener('keydown', (e) => {
-      // Close modal on Escape
       if (e.key === 'Escape') {
         if (gridModal.classList.contains('open')) closeModal(gridModal);
         if (contactModal.classList.contains('open')) closeModal(contactModal);
         return;
       }
 
-      // If a modal is open, ignore arrow shortcuts
-      if (gridModal.classList.contains('open') || contactModal.classList.contains('open')) {
-        return;
-      }
+      if (gridModal.classList.contains('open') || contactModal.classList.contains('open')) return;
+
+      const isVideoSlide = mediaItems[currentIndex].type === 'video';
 
       if (e.key === 'ArrowLeft') {
-        dismissSwipeHint();
-        prevSlide();
+        if (isVideoSlide && videoElement && !e.altKey && !e.shiftKey) {
+          // If on video slide, ArrowLeft skips back 5 seconds!
+          videoElement.currentTime = Math.max(0, videoElement.currentTime - 5);
+          showToast('Rewind 5s');
+        } else {
+          dismissSwipeHint();
+          prevSlide();
+        }
       } else if (e.key === 'ArrowRight') {
-        dismissSwipeHint();
-        nextSlide();
-      } else if (e.key === ' ' && mediaItems[currentIndex].type === 'video' && videoElement) {
-        // Spacebar to toggle video playback
+        if (isVideoSlide && videoElement && !e.altKey && !e.shiftKey) {
+          // If on video slide, ArrowRight skips forward 5 seconds!
+          videoElement.currentTime = Math.min(videoElement.duration || 9999, videoElement.currentTime + 5);
+          showToast('Forward 5s');
+        } else {
+          dismissSwipeHint();
+          nextSlide();
+        }
+      } else if (e.key === ' ' && isVideoSlide && videoElement) {
         e.preventDefault();
         if (videoElement.paused) {
           videoElement.play();
@@ -546,7 +687,6 @@
     });
   }
 
-  // Modal Helpers
   function openModal(modal) {
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
@@ -559,7 +699,6 @@
     document.body.style.overflow = '';
   }
 
-  // Toast Notification Helper
   let toastTimer = null;
   function showToast(message) {
     if (!toast) return;
@@ -568,38 +707,34 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toast.classList.remove('show');
-    }, 2800);
+    }, 2000);
   }
 
-  // Copy Link Helper
   function copyPageUrl() {
     const url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(() => {
-        showToast('Listing link copied to clipboard!');
-      }).catch(() => {
-        fallbackCopyText(url);
-      });
+        showToast('Link copied!');
+      }).catch(() => fallbackCopy(url));
     } else {
-      fallbackCopyText(url);
+      fallbackCopy(url);
     }
   }
 
-  function fallbackCopyText(text) {
-    const tempInput = document.createElement('input');
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
+  function fallbackCopy(text) {
+    const el = document.createElement('input');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
     try {
       document.execCommand('copy');
-      showToast('Listing link copied to clipboard!');
+      showToast('Link copied!');
     } catch (e) {
-      showToast('Copy URL from your browser address bar.');
+      showToast('URL copied');
     }
-    document.body.removeChild(tempInput);
+    document.body.removeChild(el);
   }
 
-  // Start the application when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initGallery);
   } else {
