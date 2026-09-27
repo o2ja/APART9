@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>Apartment Tour | Exclusive Property Gallery</title>
+  <meta name="description" content="Explore this exclusive apartment residence. High-definition property photo gallery and walkthrough video tour.">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Apartment Tour | Exclusive Property Gallery">
+  <meta property="og:description" content="View the complete high-resolution gallery and video walkthrough for this exclusive residence.">
+  <meta property="og:image" content="./assets/apartment-image-1.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Main Container -->
+  <div class="gallery-app" id="gallery-app">
+
+    <!-- Top Header -->
+    <header class="gallery-header">
+      <div class="header-left">
+        <span class="property-tag">
+          <svg class="icon-sparkle" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>
+          </svg>
+          <span class="property-title">RESIDENCE</span>
+        </span>
+      </div>
+
+      <!-- Slide Counter -->
+      <div class="header-center">
+        <div class="counter-badge" id="counter-badge" aria-live="polite">
+          <span id="current-slide">1</span>
+          <span class="counter-sep">/</span>
+          <span id="total-slides">23</span>
+        </div>
+      </div>
+
+      <!-- Header Action Controls -->
+      <div class="header-right">
+        <!-- Fit/Fill Mode Toggle -->
+        <button id="btn-fit-toggle" class="icon-btn" title="Toggle Fit / Fill View" aria-label="Toggle Fit or Fill View">
+          <svg class="icon-fit" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </button>
+
+        <!-- Grid View Button -->
+        <button id="btn-grid-view" class="icon-btn" title="View All Photos in Grid" aria-label="Open Grid View">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </button>
+
+        <!-- Share Button -->
+        <button id="btn-share" class="icon-btn" title="Share Property" aria-label="Share Property Link">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Viewport / Gallery Stage -->
+    <main class="gallery-viewport" id="gallery-viewport">
+
+      <!-- Dynamic Ambient Glow Backdrop (syncs with current slide) -->
+      <div class="ambient-backdrop" id="ambient-backdrop"></div>
+
+      <!-- Navigation Arrows -->
+      <button class="nav-btn nav-btn-prev" id="btn-prev" aria-label="Previous Slide" title="Previous">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button class="nav-btn nav-btn-next" id="btn-next" aria-label="Next Slide" title="Next">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Slides Track -->
+      <div class="slides-track" id="slides-track">
+        <!-- Slides will be rendered dynamically by app.js or initial markup -->
+      </div>
+
+      <!-- Mobile Gesture Hint (auto-fades after 4s or first interaction) -->
+      <div class="swipe-hint" id="swipe-hint">
+        <div class="swipe-hint-pill">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="7 12 12 7 17 12"></polyline>
+            <line x1="12" y1="7" x2="12" y2="17"></line>
+          </svg>
+          <span>Swipe or tap arrows to navigate</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Interface Controls -->
+    <footer class="gallery-footer">
+      <!-- Category Quick Filter / Jump Tabs -->
+      <div class="quick-tabs">
+        <button class="tab-btn active" id="tab-all" data-filter="all">All Media <span class="tab-count">23</span></button>
+        <button class="tab-btn" id="tab-photos" data-filter="photos">Photos <span class="tab-count">22</span></button>
+        <button class="tab-btn tab-video-highlight" id="tab-video" data-filter="video">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Video Tour
+        </button>
+        <button class="tab-btn tab-contact" id="btn-inquire">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Inquire
+        </button>
+      </div>
+
+      <!-- Thumbnails Scrubber Strip -->
+      <div class="thumbnails-container">
+        <div class="thumbnails-strip" id="thumbnails-strip" role="tablist" aria-label="Media Thumbnails">
+          <!-- Thumbnails rendered dynamically -->
+        </div>
+      </div>
+    </footer>
+
+    <!-- Fullscreen Grid Overlay Modal -->
+    <div class="modal-overlay" id="grid-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="grid-modal-title">
+      <div class="modal-container">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <h2 id="grid-modal-title" class="modal-title">Property Media Overview</h2>
+            <p class="modal-subtitle">22 Photographs &bull; 1 Video Tour</p>
+          </div>
+          <button class="modal-close-btn" id="btn-close-grid" aria-label="Close Grid View">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-content">
+          <div class="grid-gallery" id="grid-gallery">
+            <!-- Grid items injected dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry / Contact Sheet Modal -->
+    <div class="modal-overlay" id="contact-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <div class="modal-container modal-compact">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <h2 id="contact-modal-title" class="modal-title">Property Inquiry</h2>
+            <p class="modal-subtitle">Scan & Connect with Host / Agent</p>
+          </div>
+          <button class="modal-close-btn" id="btn-close-contact" aria-label="Close Contact Modal">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-content contact-body">
+          <div class="contact-card">
+            <div class="contact-badge">APARTMENT SHOWING</div>
+            <h3>Interested in this property?</h3>
+            <p class="contact-desc">You are viewing this listing via direct QR access. Connect directly for pricing, availability, or to schedule a private walkthrough.</p>
+            
+            <div class="contact-actions">
+              <a href="https://wa.me/?text=Hello%2C%20I%20am%20interested%20in%20the%20apartment%20I%20scanned%20via%20QR%20code." target="_blank" rel="noopener" class="contact-btn btn-whatsapp">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.32-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1 1.6-.1 2.5-1.02 2.85-2 .35-.98.35-1.82.25-2-.1-.17-.25-.25-.5-.38z"/>
+                </svg>
+                <span>Message on WhatsApp</span>
+              </a>
+              <button class="contact-btn btn-copy-link" id="btn-copy-link">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span>Copy Listing Link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
